@@ -1,0 +1,38 @@
+---
+const { message } = Astro.props;
+---
+
+<text-generator data-info={message}>
+  <button id='generatorButton'>presoiname para generar texto</button>
+  <div id='contenedorDeParrafo'>
+    <h2>mensaje de la prop : {message}</h2>
+    <p>primer parrafo (generado sinclick)</p>
+  </div>
+</text-generator>
+
+<script>
+  class TextGenerator extends HTMLElement {
+    constructor() {
+      super();
+      const message = this.dataset.info;
+      const paragraphContainer = document.getElementById('contenedorDeParrafo');
+      const generatorButton = document.getElementById('generatorButton');
+
+      if (paragraphContainer) {
+        generatorButton?.addEventListener('click', () => {
+          const paragraph = document.createElement('p');
+          paragraph.innerText = `el texto que recibi de la prop ${message}`;
+          paragraphContainer.appendChild(paragraph);
+        });
+      }
+    }
+  }
+
+  customElements.define('text-generator', TextGenerator);
+</script>
+
+<style is:global>
+  #contenedorDeParrafo p {
+    color: white;
+  }
+</style>

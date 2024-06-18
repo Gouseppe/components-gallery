@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  path: string;
+  description?: string;
+}
+const { title, path, description = '' }: Props = Astro.props;
+---
+
+<article class='flex flex-col border border-white rounded-sm p-2 gap-1'>
+  <h3 class='dark:text-white text-white'>{title}</h3>
+
+  <div class='dark:text-white text-white text-base font-light'>
+    {description}
+  </div>
+  <button
+    class='= p-1 bg-emerald-900 rounded-sm hover:bg-emerald-500 transition'
+  >
+    <a href={path}>
+      <div class='dark:text-white text-white text-base'>Probar</div>
+    </a>
+  </button>
+</article>

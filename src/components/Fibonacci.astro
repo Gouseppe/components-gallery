@@ -1,0 +1,28 @@
+<section>
+  <input type='number' id='number' />
+  <button id='generatorButton' class='text-white'>generar sucesion</button>
+  <section class='sucesion-fibonaccy-container text-white'></section>
+</section>
+
+<script is:inline>
+  console.log('hola');
+  document.getElementById('generatorButton')?.addEventListener('click', () => {
+    console.log('pipipip');
+    const number = document.getElementById('number').value;
+    const sucesionContainer = document.querySelector(
+      '.sucesion-fibonaccy-container'
+    );
+    sucesionContainer.innerHTML = '';
+    for (let i = 0; i < Number(number); i++) {
+      const paragraph = document.createElement('p');
+      paragraph.innerText = `el numero ${i} es: ${fibonacci(i)}`;
+      sucesionContainer?.appendChild(paragraph);
+    }
+  });
+  function fibonacci(n) {
+    if (n <= 1) {
+      return n;
+    }
+    return fibonacci(n - 1) + fibonacci(n - 2);
+  }
+</script>

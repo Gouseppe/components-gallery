@@ -1,0 +1,58 @@
+---
+import CircularAnimationButton from '@/components/CircularAnimationButton.astro';
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout title='buttons'>
+  <article>
+    <section>
+      <h2>circular animation button</h2>
+      <section class='flex gap-1'>
+        <CircularAnimationButton>
+          <svg
+            slot='icon'
+            xmlns='http://www.w3.org/2000/svg'
+            width='100%'
+            height='100%'
+            viewBox='0 0 14 14'
+          >
+            <path
+              fill='none'
+              stroke='currentColor'
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              d='M4 9.4a6.77 6.77 0 0 1-2.41 1.21a.5.5 0 0 0 0 .94C8.51 14.39 12.91 10 12.24 5.13l1.12-2.32h-1.3C10.44.82 6.14.92 6.85 5.16c0 0-2.3.41-5.24-2.48A.5.5 0 0 0 .76 3A5.52 5.52 0 0 0 4 9.4'
+            ></path>
+          </svg>
+        </CircularAnimationButton>
+
+        <CircularAnimationButton>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            width='100%'
+            height='100%'
+            viewBox='0 0 24 24'
+            slot='icon'
+            ><path
+              fill='currentColor'
+              d='M19.27 5.33C17.94 4.71 16.5 4.26 15 4a.09.09 0 0 0-.07.03c-.18.33-.39.76-.53 1.09a16.09 16.09 0 0 0-4.8 0c-.14-.34-.35-.76-.54-1.09c-.01-.02-.04-.03-.07-.03c-1.5.26-2.93.71-4.27 1.33c-.01 0-.02.01-.03.02c-2.72 4.07-3.47 8.03-3.1 11.95c0 .02.01.04.03.05c1.8 1.32 3.53 2.12 5.24 2.65c.03.01.06 0 .07-.02c.4-.55.76-1.13 1.07-1.74c.02-.04 0-.08-.04-.09c-.57-.22-1.11-.48-1.64-.78c-.04-.02-.04-.08-.01-.11c.11-.08.22-.17.33-.25c.02-.02.05-.02.07-.01c3.44 1.57 7.15 1.57 10.55 0c.02-.01.05-.01.07.01c.11.09.22.17.33.26c.04.03.04.09-.01.11c-.52.31-1.07.56-1.64.78c-.04.01-.05.06-.04.09c.32.61.68 1.19 1.07 1.74c.03.01.06.02.09.01c1.72-.53 3.45-1.33 5.25-2.65c.02-.01.03-.03.03-.05c.44-4.53-.73-8.46-3.1-11.95c-.01-.01-.02-.02-.04-.02M8.52 14.91c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.84 2.12-1.89 2.12m6.97 0c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.83 2.12-1.89 2.12'
+            ></path>
+          </svg>
+        </CircularAnimationButton>
+        <CircularAnimationButton>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            width='100%'
+            height='100%'
+            viewBox='0 0 24 24'
+            slot='icon'
+            ><path
+              fill='currentColor'
+              d='M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4zm9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3'
+            ></path></svg
+          >
+        </CircularAnimationButton>
+      </section>
+    </section>
+  </article>
+</Layout>

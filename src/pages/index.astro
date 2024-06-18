@@ -1,0 +1,47 @@
+---
+import Card from '../components/Card.astro';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title='Gallery'>
+  <main>
+    <a href='pagina1' class='text-white'>nueva pagina</a>
+    <a href='/routes/pagina2-cambio' class='text-white'>pagina2</a>
+    <section class='cards-grid'>
+      <div>
+        <Card
+          path='./gallery/up-scrolling-view'
+          title='UpScrolling'
+          description='este componente permite dar la sensacion de que las distintas secciones subes al scrolear en vez de sentir que el usuario esta bajando'
+        />
+      </div>
+      <div>
+        <Card path='./gallery/practica' title='Practica' />
+      </div>
+      <div>
+        <Card path='./gallery/infinite-scroll-view' title='infinite scroll' />
+      </div>
+      <div>
+        <Card path='./gallery/fibonacci-view' title='Sucesion Fibonacci' />
+      </div>
+      <div>
+        <Card path='./gallery/buttons-view' title='Buttons' />
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    margin: auto;
+    padding: 1rem;
+    width: 800px;
+    max-width: calc(100%);
+    color: white;
+  }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+</style>

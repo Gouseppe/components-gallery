@@ -1,0 +1,112 @@
+---
+const algo = Astro.slots;
+---
+
+<div>
+  <div>
+    <!-- <div class='w-full h-[100vh] bg-[#2e4ea1] contenedor1 all-secttion'>
+      <slot name='content1' />
+    </div>
+    <div class='w-full h-[100vh] bg-[#e57c5c] contenedor2 all-secttion'>
+      <slot name='content2' />
+    </div>
+    <div class='w-full h-[100vh] bg-[#4bd5b5] contenedor3 all-secttion'>
+      <slot name='content3' />
+    </div> -->
+    {
+      algo &&
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((e) => {
+          if (algo.has(`content${e}`)) {
+            if (e === 1) {
+              return (
+                <div
+                  class={`w-full h-[100vh] bg-[#2e4ea1] contenedor1 all-secttion`}
+                >
+                  <slot name='content1' />
+                </div>
+              );
+            }
+            if (e === 2) {
+              return (
+                <div
+                  class={`w-full h-[100vh] bg-[#e57c5c]  contenedor2 all-secttion`}
+                >
+                  <slot name='content2' />
+                </div>
+              );
+            }
+            if (e === 3) {
+              return (
+                <div
+                  class={`w-full h-[100vh] bg-[#4bd5b5] contenedor3 all-secttion`}
+                >
+                  <slot name='content3' />
+                </div>
+              );
+            }
+            if (e === 4) {
+              return (
+                <div
+                  class={`w-full h-[100vh] bg-[#2e4ea1] contenedor4 all-secttion`}
+                >
+                  <slot name='content4' />
+                </div>
+              );
+            }
+            if (e === 5) {
+              return (
+                <div
+                  class={`w-full h-[100vh] bg-[#2e4ea1] contenedor5 all-secttion`}
+                >
+                  <slot name='content5' />
+                </div>
+              );
+            }
+          }
+        })
+    }
+  </div>
+</div>
+<script is:inline>
+  const contenedor1 = document.querySelector('.contenedor1');
+  const contenedor2 = document.querySelector('.contenedor2');
+  const contenedor3 = document.querySelector('.contenedor3');
+
+  window.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY;
+    const widthViewport = window.innerHeight;
+    console.log(scrollPosition);
+    if (scrollPosition >= 0 && scrollPosition <= widthViewport) {
+      contenedor1.style.transform = 'translateY(+' + scrollPosition + 'px)';
+      return true;
+      // contenedor2.style.transform = 'translateY(-' + scrollPosition + 'px)';
+      // contenedor3.style.transform = 'translateY(-' + scrollPosition + 'px)';
+    }
+    if (
+      scrollPosition >= widthViewport &&
+      scrollPosition <= widthViewport * 2
+    ) {
+      console.log('mira: ', widthViewport);
+      contenedor1.style.transform = 'translateY(+' + widthViewport + 'px)';
+
+      contenedor2.style.transform =
+        'translateY(+' + (scrollPosition - widthViewport) + 'px)';
+      console.log('entrooo');
+    }
+  });
+</script>
+
+<style>
+  .all-secttion {
+    position: relative;
+  }
+  .contenedor1 {
+    z-index: 1;
+  }
+  .contenedor2 {
+    z-index: 2;
+  }
+  .contenedor3 {
+    z-index: 3;
+  }
+</style>

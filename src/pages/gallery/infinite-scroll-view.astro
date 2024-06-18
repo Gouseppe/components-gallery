@@ -1,0 +1,13 @@
+---
+import { InfiniteScroll } from '@/components/InfiniteScroll';
+import { InfiniteScrollContainer } from '@/components/InfiniteScrollContainer';
+import Prueba from '@/components/Prueba.astro';
+import { PruebaTsx } from '@/components/PruebaTsx';
+import Layout from '@/layouts/Layout.astro';
+
+export const prerender = false;
+---
+
+<Layout title='Infinite scroll'>
+  <InfiniteScrollContainer client:only='react' />
+</Layout>
