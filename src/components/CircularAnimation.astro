@@ -1,0 +1,65 @@
+<div class='conatiner'>
+  <div class='loader'>
+    <div style='--i: 0'>1</div>
+    <div style='--i: 1'>2</div>
+    <div style='--i: 2'>3</div>
+    <div style='--i: 3'>4</div>
+    <div style='--i: 4'>5</div>
+    <div style='--i: 5'>6</div>
+    <div style='--i: 6'>7</div>
+  </div>
+</div>
+
+<style>
+  .conatiner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loader {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.25);
+  }
+
+  .loader div {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 50%;
+    animation: animate 5s linear forwards;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: #000;
+  }
+  @keyframes animate {
+    0%,
+    10% {
+      width: 100px;
+      height: 100px;
+      transform: rotate(0deg) translateX(120px);
+    }
+    90%,
+    100% {
+      width: 40px;
+      height: 40px;
+      transform: rotate(calc(360deg / 7 * var(--i))) translateX(120px);
+    }
+    /* 90%,
+    100% {
+      width: 100px;
+      height: 100px;
+      transform: translateX(120px) rotate(0deg);
+    } */
+  }
+</style>
