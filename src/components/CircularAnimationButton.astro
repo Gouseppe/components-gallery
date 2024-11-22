@@ -1,13 +1,17 @@
 ---
-
+const { href = '#' } = Astro.props;
 ---
 
-<a href='#'><slot name='icon' /></a>
+<a href={href}><slot name='icon' /> </a>
 <style>
   @property --fill {
     syntax: '<percentage>';
     inherits: true;
     initial-value: 0%;
+  }
+
+  article {
+    color: red;
   }
 
   a {
