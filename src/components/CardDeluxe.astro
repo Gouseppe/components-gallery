@@ -1,0 +1,39 @@
+<section class='card-deluxe'>
+  <div class='body'>
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi dignissimos
+    nobis laudantium praesentium molestiae quas ut! Beatae provident quaerat
+    rerum velit! Eaque, odio deserunt. Veritatis beatae est pariatur qui soluta!
+  </div>
+</section>
+
+<script>
+  const cardDeluxe = document.querySelector('.card-deluxe') as HTMLElement;
+  cardDeluxe && cardDeluxe.addEventListener('mousemove', (event) => {
+    const { clientX, clientY } = event as MouseEvent;
+    cardDeluxe.style.setProperty('--x', `${clientX}px`);
+    cardDeluxe.style.setProperty('--y', `${clientY}px`);
+  });
+
+</script>
+
+<style >
+  .card-deluxe {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(
+        200px circle at var(--x) var(--y),,
+        #15ca82,
+        transparent
+    );
+    width: 450px;
+    height: 400px;
+  }
+  .card-deluxe > .body {
+    background-color: black;
+    width: 95%;
+    height: 95%;
+    border: 2px solid red;
+    color: white;
+  }
+</style>
