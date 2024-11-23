@@ -1,0 +1,39 @@
+<p class='random-words' data-palabra='me llamo ernesto'>me llamo ernesto</p>
+
+<script>
+  let activated = false;
+  const p = document.querySelector('.random-words') as HTMLElement;
+  const words = 'abcdefghijklmnopqrstuvwxyz';
+  p.addEventListener('mouseover', (event) => {
+    if (!activated) {
+      activated = true;
+      let iterations = 0;
+      const intervalID = setInterval(() => {
+        console.log('hola');
+        p.innerText = p.innerText
+          .split('')
+          .map((e, i) => {
+            if (i < iterations) {
+              return p.dataset?.palabra?.[i];
+            }
+
+            return words[Math.floor(Math.random() * 26)];
+          })
+          .join('');
+        if (
+          Math.floor(iterations) ===
+          (p.dataset.palabra?.length as number) - 1
+        ) {
+          clearInterval(intervalID);
+          activated = false;
+        }
+        iterations += 1 / 3;
+      }, 50);
+    }
+  });
+</script>
+<style>
+  p {
+    color: white;
+  }
+</style>
