@@ -1,0 +1,33 @@
+<div>
+  <section class='bg-orange-400'>esta es la seccion 1</section>
+  <section class='bg-red-400'>esta es la seccion 2</section>
+  <section class='bg-indigo-300'>esta es la seccion 3</section>
+</div>
+
+<script is:inline>
+  const sections = document.querySelectorAll('section');
+  sections.forEach((section) => {
+    section.addEventListener('click', (event) => {
+      console.log(event.target.innerText);
+      sections.forEach((section) => {
+        section.style.flexGrow = 1;
+      });
+      event.target.style.flexGrow = 3;
+    });
+  });
+</script>
+<style>
+  div {
+    display: flex;
+    width: clamp(500px, 90%, 900px);
+    height: 700px;
+  }
+  section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    transition: flex-grow 0.5s;
+    overflow: hidden;
+  }
+</style>
