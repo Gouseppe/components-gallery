@@ -1,39 +1,171 @@
-<section class='card-deluxe'>
+---
+import ExpandibleContainer from './ExpandibleContainer.astro';
+
+interface Props {
+  bodyText: string;
+}
+
+const { bodyText } = Astro.props;
+---
+
+<section class='card-deluxe' id='card-deluxe'>
   <div class='body'>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi dignissimos
-    nobis laudantium praesentium molestiae quas ut! Beatae provident quaerat
-    rerum velit! Eaque, odio deserunt. Veritatis beatae est pariatur qui soluta!
+    <!-- <div>{bodyText}</div> -->
+    <div class='expandable-element'></div>
   </div>
 </section>
 
 <script>
-  const cardDeluxe = document.querySelector('.card-deluxe') as HTMLElement;
-  cardDeluxe && cardDeluxe.addEventListener('mousemove', (event) => {
-    const { clientX, clientY } = event as MouseEvent;
-    cardDeluxe.style.setProperty('--x', `${clientX}px`);
-    cardDeluxe.style.setProperty('--y', `${clientY}px`);
-  });
+  const cardDeluxe = document.getElementById('card-deluxe') as HTMLElement;
+  console.log(cardDeluxe.innerText);
 
+  let done = false;
+  let animation: Animation = null as unknown as Animation;
+  const blurScreen = document.createElement('div');
+  document.body.appendChild(blurScreen);
+
+  const cardDeluxeList = document.querySelectorAll(
+    '.card-deluxe'
+  ) as NodeListOf<HTMLElement>;
+
+  document.onmousemove = (event) => {
+    cardDeluxeList.forEach((e) => {
+      console.log(event.clientX, event.clientY);
+      e.style.setProperty('--x', `${event.clientX - e.offsetLeft}px`);
+      e.style.setProperty('--y', `${event.clientY - e.offsetTop}px`);
+    });
+  };
+  // seccion para expandir el elemento expandible
+  const expandableElementList = document.querySelectorAll(
+    '.expandable-element'
+  ) as NodeListOf<HTMLElement>;
+
+  expandableElementList.forEach((expandableElement) => {
+    expandableElement.onclick = (event) => {
+      if (done) {
+        (animation as Animation).reverse();
+        done = false;
+        blurScreen.style.display = 'none';
+        expandableElement.classList.remove('active');
+      } else {
+        blurScreen.style.display = 'block';
+        blurScreen.style.position = 'absolute';
+        blurScreen.style.top = '0';
+        blurScreen.style.left = '0';
+        blurScreen.style.width = '100%';
+        blurScreen.style.height = '100%';
+        blurScreen.style.backdropFilter = 'blur(5px)';
+
+        const dom = expandableElement.getBoundingClientRect();
+        console.log(window.innerHeight / 2 - dom.top);
+        console.log(window.innerWidth / 2 - dom.left);
+        animation = expandableElement.animate(
+          [
+            {
+              width: '100%',
+              height: '100%',
+
+              top: '0px',
+              left: '0px',
+              zIndex: 100,
+            },
+            {
+              width: '70vw',
+              height: `${70 * (9 / 16)}vw`,
+
+              // aspectRatio: '16 / 9',
+              top: `${window.innerHeight / 2 - dom.top}px`,
+              left: `${window.innerWidth / 2 - dom.left}px`,
+              transform: 'translate(-50%, -50%)',
+              zIndex: 100,
+            },
+          ],
+          {
+            duration: 1000, // Adjust the duration as needed
+            fill: 'forwards', // Keep the final state after the animation
+          }
+        );
+        expandableElement.classList.add('active');
+        done = true;
+      }
+    };
+  });
 </script>
 
-<style >
+<style>
   .card-deluxe {
     display: flex;
     justify-content: center;
     align-items: center;
     background: radial-gradient(
-        200px circle at var(--x) var(--y),,
-        #15ca82,
-        transparent
+      200px circle at var(--x) var(--y),
+      #ac0a50,
+      transparent
     );
-    width: 450px;
-    height: 400px;
+    max-width: 300px;
+    flex-grow: 1;
+    flex-basis: 100px;
+    flex-shrink: 0;
+    aspect-ratio: 9/16;
+    padding: 10px;
+    border-radius: 7px;
   }
+
   .card-deluxe > .body {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    border-radius: 0.5rem;
     background-color: black;
-    width: 95%;
-    height: 95%;
-    border: 2px solid red;
     color: white;
   }
+  .expandable-element {
+    position: absolute;
+    background: url('/src/assets/icons/Camellya_Card.webp');
+    background-size: cover;
+    background-position: center;
+    background-color: #cf206c;
+    color: red;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    transition: all 1s;
+  }
+  .expandable-element.active {
+    /* background-color: #15ca82; */
+    background: url('/src/assets/icons/camellya.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* animation: 1s forwards algo; */
+  }
+  .blur-screen {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+  }
+
+  /* .expandable-element:not(.active) .camellya-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left;
+  } */
+
+  /* @keyframes algo {
+    from {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 1 / 1;
+      border: 1px solid red;
+    }
+    to {
+      width: 70vw;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      border: 1px solid green;
+    }
+  } */
 </style>
