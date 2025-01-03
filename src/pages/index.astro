@@ -1,47 +1,50 @@
 ---
-import Card from '../components/Card.astro';
-import Layout from '../layouts/Layout.astro';
+import Card from "../components/Card.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title='Gallery'>
+<Layout title="Gallery">
   <main>
-    <a href='pagina1' class='text-white'>nueva pagina</a>
-    <a href='/routes/pagina2-cambio' class='text-white'>pagina2</a>
-    <section class='cards-grid'>
+    <a href="pagina1" class="text-white">nueva pagina</a>
+    <a href="/routes/pagina2-cambio" class="text-white">pagina2</a>
+    <section class="cards-grid">
       <div>
         <Card
-          path='./gallery/up-scrolling-view'
-          title='UpScrolling'
-          description='este componente permite dar la sensacion de que las distintas secciones subes al scrolear en vez de sentir que el usuario esta bajando'
+          path="./gallery/up-scrolling-view"
+          title="UpScrolling"
+          description="este componente permite dar la sensacion de que las distintas secciones subes al scrolear en vez de sentir que el usuario esta bajando"
         />
       </div>
       <div>
         <Card
-          path='./gallery/panel-view'
-          title='panel'
-          description='panel, donde puedes ver varias section divididas en columnas'
+          path="./gallery/panel-view"
+          title="panel"
+          description="panel, donde puedes ver varias section divididas en columnas"
         />
       </div>
       <div>
-        <Card path='./gallery/practica' title='Practica' />
+        <Card path="./gallery/practica" title="Practica" />
       </div>
       <div>
-        <Card path='./gallery/infinite-scroll-view' title='infinite scroll' />
+        <Card path="./gallery/infinite-scroll-view" title="infinite scroll" />
       </div>
       <div>
-        <Card path='./gallery/fibonacci-view' title='Sucesion Fibonacci' />
+        <Card path="./gallery/fibonacci-view" title="Sucesion Fibonacci" />
       </div>
       <div>
-        <Card path='./gallery/buttons-view' title='Buttons' />
+        <Card path="./gallery/buttons-view" title="Buttons" />
       </div>
       <div>
         <Card
-          path='./gallery/circular-animation-view'
-          title='circular animation'
+          path="./gallery/circular-animation-view"
+          title="circular animation"
         />
       </div>
       <div>
-        <Card path='./gallery/card-deluxe-view' title='card deluxe' />
+        <Card path="./gallery/card-deluxe-view" title="card deluxe" />
+      </div>
+      <div>
+        <Card path="./gallery/snow-rain-view" title="Snow rain" />
       </div>
     </section>
   </main>

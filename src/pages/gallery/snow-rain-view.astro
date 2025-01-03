@@ -1,0 +1,87 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="snow rain">
+  <canvas> </canvas>
+</Layout>
+
+<script>
+  const canvas: HTMLCanvasElement = document.querySelector(
+    "canvas"
+  ) as HTMLCanvasElement;
+  const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const bolasDeNieves: BolaDeNieve[] = [] as BolaDeNieve[];
+  const clientMoves = {
+    x: 0,
+    xAcumulation: 0,
+  };
+  document.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+  document.addEventListener("mousemove", (event) => {
+    clientMoves.x = event.clientX / window.innerWidth - 0.5;
+  });
+
+  class BolaDeNieve {
+    x = 0;
+    y = 0;
+    size = 0;
+    oscilacion = 0;
+    baseX = 0;
+    constructor() {
+      this.baseX = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      // this.y = canvas.height;
+      // this.baseX = 0;
+      this.oscilacion = Math.random() * 2 * Math.PI;
+      this.size = Math.floor(Math.random() * 4) + 4;
+    }
+    update() {
+      this.y += 1 + this.size / 6;
+      this.oscilacion += 0.02;
+      this.x = this.baseX + Math.sin(this.oscilacion) * 20;
+
+      clientMoves.xAcumulation +=
+        (clientMoves.x - clientMoves.xAcumulation) * 0.5;
+      this.baseX += clientMoves.xAcumulation * 5;
+      if (this.y > canvas.height) {
+        this.y = 0;
+      }
+      if (this.x >= canvas.width + 20) {
+        this.baseX = 0;
+      } else if (this.x < -20) {
+        this.baseX = canvas.width;
+      }
+    }
+    draw() {
+      ctx.fillStyle = "white";
+      ctx.fillRect(this.x, this.y, this.size, this.size);
+    }
+  }
+  function crearBolasDeNieves(cant: number) {
+    for (let i = 0; i < cant; i++) {
+      bolasDeNieves.push(new BolaDeNieve());
+    }
+  }
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    bolasDeNieves.forEach((bolaDeNieve) => {
+      bolaDeNieve.update();
+      bolaDeNieve.draw();
+    });
+    requestAnimationFrame(animate);
+  }
+  crearBolasDeNieves(100);
+  animate();
+</script>
+
+<style>
+  * {
+    color: white;
+  }
+</style>
